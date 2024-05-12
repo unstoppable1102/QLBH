@@ -13,10 +13,10 @@ import javax.persistence.*;
 public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int order_id;
+    private Integer orderId;
 
     @Column(name = "product_id")
-    private int productId;
+    private Integer productId;
 
     private int quantity;
 

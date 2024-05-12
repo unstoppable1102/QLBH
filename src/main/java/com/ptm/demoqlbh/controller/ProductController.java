@@ -1,45 +1,47 @@
 package com.ptm.demoqlbh.controller;
 
 import com.ptm.demoqlbh.model.Product;
-import com.ptm.demoqlbh.service.impl.ProductServiceimpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ptm.demoqlbh.service.ProductService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/product")
+@RequiredArgsConstructor
+@RequestMapping("/api/v1/products")
 public class ProductController {
 
-    @Autowired
-    private ProductServiceimpl productServiceimpl;
 
-    @PostMapping("/add")
+    private final ProductService productService;
+
+    @PostMapping
     public Product addProduct(@RequestBody Product product){
-        return  productServiceimpl.saveProduct(product);
+        return productService.save(product);
     }
 
-    @GetMapping("/lists")
+    @GetMapping
     public List<Product> findAllProducts(){
-        return productServiceimpl.getProducts();
+        return productService.findAll();
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/{id}")
     public Product findCategoryById(@PathVariable int id){
-        return (Product) productServiceimpl.getProductById(id);
+        return productService.findById(id);
     }
 
-    @GetMapping("/product/{name}")
-    public Product findProductByName(@PathVariable String name){
-        return (Product) productServiceimpl.getProductByName(name);
+    @GetMapping("/{name}")
+    public List<Product> findProductByName(@PathVariable String name){
+        return productService.findByName(name);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/{id}")
     public  Product updateProduct(@RequestBody Product product){
-        return  productServiceimpl.updateProduct(product);
+        return  productService.update(product);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public String deleteProduct( @PathVariable int id){
-        return productServiceimpl.deleteProduct(id);
+        productService.delete(id);
+        return "Product deleted";
     }
 }

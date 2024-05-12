@@ -4,10 +4,8 @@ import com.ptm.demoqlbh.model.Product;
 import com.ptm.demoqlbh.repository.ProductRepository;
 import com.ptm.demoqlbh.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -41,5 +39,10 @@ public class ProductServiceImpl implements ProductService {
     public void delete(Integer id) {
         productRepository.deleteById(id);
 
+    }
+
+    @Override
+    public List<Product> findByName(String name) {
+        return productRepository.findByName(name);
     }
 }

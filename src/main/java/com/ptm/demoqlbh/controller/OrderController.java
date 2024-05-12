@@ -1,41 +1,44 @@
 package com.ptm.demoqlbh.controller;
 
-import com.ptm.demoqlbh.model.Customer;
 import com.ptm.demoqlbh.model.Order;
+
 import com.ptm.demoqlbh.service.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/order")
+@RequiredArgsConstructor
+@RequestMapping("/api/v1/orders")
 public class OrderController {
-    @Autowired
-    private OrderService orderService;
 
-    @PostMapping("/add")
+    private final OrderService orderService;
+
+    @PostMapping
     public Order addOrder(@RequestBody Order order){
-        return  orderService.saveOrder(order);
+        return  orderService.save(order);
     }
 
-    @GetMapping("/lists")
+    @GetMapping
     public List<Order> findAllOrders(){
-        return orderService.getOrders();
+        return orderService.findAll();
     }
 
-    @GetMapping("/orders/{id}")
+    @GetMapping("/{id}")
     public Order findOrderById(@PathVariable int id){
-        return (Order) orderService.getOrderById(id);
+        return orderService.findById(id);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/{id}")
     public  Order updateOrder(@RequestBody Order order){
-        return  orderService.updateOrder(order);
+        return orderService.update(order);
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public String deleteOrder( @PathVariable int id){
-        return orderService.deleteOrder(id);
+       orderService.delete(id);
+       return "Order deleted";
     }
 
 

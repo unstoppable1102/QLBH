@@ -1,49 +1,49 @@
 package com.ptm.demoqlbh.controller;
 
-import com.ptm.demoqlbh.model.Category;
 import com.ptm.demoqlbh.model.Customer;
 import com.ptm.demoqlbh.service.CustomerService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/api/v1/customers")
+@RequiredArgsConstructor
 public class CustomerController {
 
-    @Autowired
-    private CustomerService customerService;
+    private final CustomerService customerService;
 
-    @PostMapping("/add")
+    @PostMapping
     public Customer addCustomer(@RequestBody Customer customer){
-        return  customerService.saveCustomer(customer);
+        return  customerService.save(customer);
     }
 
 
-    @GetMapping("/lists")
+    @GetMapping
     public List<Customer> findAllCustomers(){
-        return customerService.getCustomers();
+        return customerService.findAll();
     }
 
-    @GetMapping("/customer/{id}")
+    @GetMapping("/{id}")
     public Customer findCustomerById(@PathVariable int id){
-        return (Customer) customerService.getCustomerById(id);
+        return  customerService.findById(id);
     }
 
-    @GetMapping("/customer/{name}")
+    @GetMapping("/{name}")
     public Customer findCategoryByName(@PathVariable String name){
-        return (Customer) customerService.getCustomerByName(name);
+        return customerService.findByName(name);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/{id}")
     public  Customer updateCustomer(@RequestBody Customer customer){
-        return  customerService.updateCustomer(customer);
+        return  customerService.save(customer);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public String deleteCustomer( @PathVariable int id){
-        return customerService.deleteCustomer(id);
+         customerService.delete(id);
+         return "Customer deleted";
     }
 
 }

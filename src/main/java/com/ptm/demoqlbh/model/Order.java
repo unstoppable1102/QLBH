@@ -16,10 +16,10 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "customer_id")
-    private int customerId;
+    private Integer customerId;
 
     private byte status;
 

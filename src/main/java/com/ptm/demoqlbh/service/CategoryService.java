@@ -3,7 +3,9 @@ package com.ptm.demoqlbh.service;
 import com.ptm.demoqlbh.model.Category;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface CategoryService extends GenericService<Category, Integer> {
-    Category findByName(String name);
+    List<Category> findByName(String name);
 }
