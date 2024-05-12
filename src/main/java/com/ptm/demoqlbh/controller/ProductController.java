@@ -1,7 +1,7 @@
 package com.ptm.demoqlbh.controller;
 
 import com.ptm.demoqlbh.model.Product;
-import com.ptm.demoqlbh.service.ProductService;
+import com.ptm.demoqlbh.service.impl.ProductServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -11,35 +11,35 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    private ProductService productService;
+    private ProductServiceimpl productServiceimpl;
 
     @PostMapping("/add")
     public Product addProduct(@RequestBody Product product){
-        return  productService.saveProduct(product);
+        return  productServiceimpl.saveProduct(product);
     }
 
     @GetMapping("/lists")
     public List<Product> findAllProducts(){
-        return productService.getProducts();
+        return productServiceimpl.getProducts();
     }
 
     @GetMapping("/product/{id}")
     public Product findCategoryById(@PathVariable int id){
-        return (Product) productService.getProductById(id);
+        return (Product) productServiceimpl.getProductById(id);
     }
 
     @GetMapping("/product/{name}")
     public Product findProductByName(@PathVariable String name){
-        return (Product) productService.getProductByName(name);
+        return (Product) productServiceimpl.getProductByName(name);
     }
 
     @PutMapping("/update")
     public  Product updateProduct(@RequestBody Product product){
-        return  productService.updateProduct(product);
+        return  productServiceimpl.updateProduct(product);
     }
 
     @DeleteMapping("/delete/{id}")
     public String deleteProduct( @PathVariable int id){
-        return productService.deleteProduct(id);
+        return productServiceimpl.deleteProduct(id);
     }
 }

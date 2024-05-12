@@ -1,12 +1,15 @@
 package com.ptm.demoqlbh.model;
 
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "product")
 public class Product {
 
@@ -20,7 +23,8 @@ public class Product {
 
     private double price;
 
-    private double sale_price;
-
-    private int category_id;
+    @Column(name = "sale_price")
+    private double salePrice;
+    @Column(name = "category_id")
+    private int categoryId;
 }

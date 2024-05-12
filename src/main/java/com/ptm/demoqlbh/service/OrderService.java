@@ -1,8 +1,7 @@
 package com.ptm.demoqlbh.service;
 
-import com.ptm.demoqlbh.model.Category;
 import com.ptm.demoqlbh.model.Order;
-import com.ptm.demoqlbh.repository.IOrderRepository;
+import com.ptm.demoqlbh.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +11,7 @@ import java.util.List;
 public class OrderService {
 
     @Autowired
-    private IOrderRepository orderRepository;
+    private OrderRepository orderRepository;
 
     public Order saveOrder(Order order) {
         return orderRepository.save(order);

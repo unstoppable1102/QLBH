@@ -1,8 +1,7 @@
 package com.ptm.demoqlbh.service;
 
-import com.ptm.demoqlbh.model.Category;
 import com.ptm.demoqlbh.model.Customer;
-import com.ptm.demoqlbh.repository.ICustomerRepository;
+import com.ptm.demoqlbh.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +10,7 @@ import java.util.List;
 @Service
 public class CustomerService {
     @Autowired
-    private ICustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
 
     public Customer saveCustomer(Customer customer) {
         return customerRepository.save(customer);
@@ -45,7 +44,7 @@ public class CustomerService {
 
         existingCustomer.setAddress(customer.getAddress());
 
-        existingCustomer.setCreated_date(customer.getCreated_date());
+        existingCustomer.setCreatedDate(customer.getCreatedDate());
 
         existingCustomer.setGender(customer.getGender());
 

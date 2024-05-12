@@ -1,7 +1,7 @@
 package com.ptm.demoqlbh.controller;
 
-import com.ptm.demoqlbh.model.Order_detail;
-import com.ptm.demoqlbh.service.Order_detailService;
+import com.ptm.demoqlbh.model.OrderDetail;
+import com.ptm.demoqlbh.service.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,30 +9,30 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/order_detail")
-public class Order_detailController {
+public class OrderDetailController {
 
     @Autowired
-    private Order_detailService order_detailService;
+    private OrderDetailService order_detailService;
 
     @PostMapping("/add")
-    public Order_detail addOrder_detail(@RequestBody Order_detail order_detail){
+    public OrderDetail addOrder_detail(@RequestBody OrderDetail order_detail){
         return  order_detailService.saveOrder_detail(order_detail);
     }
 
 
     @GetMapping("/lists")
-    public List<Order_detail> findAllOrder_details(){
+    public List<OrderDetail> findAllOrder_details(){
         return order_detailService.getOrder_details();
     }
 
     @GetMapping("/order_details/{order_id}")
-    public Order_detail findOrder_detailById(@PathVariable int order_id){
-        return (Order_detail) order_detailService.getOrder_detailById(order_id);
+    public OrderDetail findOrder_detailById(@PathVariable int order_id){
+        return (OrderDetail) order_detailService.getOrder_detailById(order_id);
     }
 
 
     @PutMapping("/update")
-    public Order_detail updateOrder_detail(@RequestBody Order_detail order_detail){
+    public OrderDetail updateOrder_detail(@RequestBody OrderDetail order_detail){
         return  order_detailService.updateOrder_detail(order_detail);
     }
 
